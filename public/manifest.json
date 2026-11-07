@@ -1,0 +1,67 @@
+{
+  "id": "/",
+  "name": "DayPilot AI",
+  "short_name": "DayPilot",
+  "description": "Your personal AI study and productivity assistant.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "theme_color": "#030712",
+  "background_color": "#030712",
+  "categories": [
+    "productivity",
+    "education",
+    "utilities"
+  ],
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "AI Study Assistant",
+      "short_name": "Assistant",
+      "description": "Decompose goals & generate roadmaps with Gemini AI",
+      "url": "/?section=assistant",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Scheduled Reminders",
+      "short_name": "Reminders",
+      "description": "View today's alerts and manage push notifications",
+      "url": "/?section=reminders",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Quick Add Task",
+      "short_name": "New Task",
+      "description": "Quickly create a study task or action item",
+      "url": "/?action=quick_task",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ],
+  "screenshots": []
+}

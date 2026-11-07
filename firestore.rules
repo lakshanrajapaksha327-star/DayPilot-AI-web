@@ -1,0 +1,57 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default deny all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    // User profile
+    match /users/{userId} {
+      allow read, write: if isOwner(userId);
+
+      // Learning Plans subcollection
+      match /plans/{planId} {
+        allow read, write: if isOwner(userId);
+      }
+
+      // Tasks subcollection
+      match /tasks/{taskId} {
+        allow read, write: if isOwner(userId);
+      }
+
+      // Reminders subcollection
+      match /reminders/{reminderId} {
+        allow read, write: if isOwner(userId);
+      }
+
+      // Registered Devices subcollection (FCM tokens for web push)
+      match /devices/{deviceId} {
+        allow read, write: if isOwner(userId);
+      }
+
+      // User Preferences subcollection
+      match /preferences/{docId} {
+        allow read, write: if isOwner(userId);
+      }
+
+      // Progress subcollection
+      match /progress/{recordId} {
+        allow read, write: if isOwner(userId);
+      }
+
+      // Memory subcollection for AI assistant context
+      match /memory/{memoryId} {
+        allow read, write: if isOwner(userId);
+      }
+    }
+  }
+}

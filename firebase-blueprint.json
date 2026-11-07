@@ -1,0 +1,204 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile information and general settings",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "maxLength": 128 },
+        "displayName": { "type": "string", "maxLength": 100 },
+        "email": { "type": "string", "maxLength": 200 },
+        "photoURL": { "type": "string", "maxLength": 500 },
+        "timeZone": { "type": "string", "maxLength": 100 },
+        "preferredLanguage": { "type": "string", "maxLength": 50 },
+        "preferredStudyTime": { "type": "string", "enum": ["morning", "afternoon", "evening", "night"] },
+        "streakDays": { "type": "number" },
+        "lastActiveDate": { "type": "string", "maxLength": 20 },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["userId", "email"]
+    },
+    "Plan": {
+      "title": "Plan",
+      "description": "Learning roadmap and study plan",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "title": { "type": "string", "maxLength": 200 },
+        "description": { "type": "string", "maxLength": 2000 },
+        "startDate": { "type": "string", "maxLength": 30 },
+        "endDate": { "type": "string", "maxLength": 30 },
+        "durationWeeks": { "type": "number" },
+        "dailyStudyMinutes": { "type": "number" },
+        "preferredTime": { "type": "string", "maxLength": 50 },
+        "skillLevel": { "type": "string", "enum": ["beginner", "intermediate", "advanced", "all-levels"] },
+        "objectives": { "type": "array" },
+        "status": { "type": "string", "enum": ["active", "paused", "completed"] },
+        "progress": { "type": "number" },
+        "color": { "type": "string", "maxLength": 30 },
+        "scheduleConfig": { "type": "object" },
+        "pausedAt": { "type": "string", "maxLength": 50 },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "title", "status"]
+    },
+    "Task": {
+      "title": "Task",
+      "description": "User scheduled or standalone task",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "title": { "type": "string", "maxLength": 200 },
+        "notes": { "type": "string", "maxLength": 2000 },
+        "description": { "type": "string", "maxLength": 2000 },
+        "priority": { "type": "string", "enum": ["low", "medium", "high", "urgent"] },
+        "category": { "type": "string", "maxLength": 50 },
+        "planId": { "type": "string", "maxLength": 128 },
+        "lessonId": { "type": "string", "maxLength": 128 },
+        "date": { "type": "string", "maxLength": 30 },
+        "startTime": { "type": "string", "maxLength": 20 },
+        "endTime": { "type": "string", "maxLength": 20 },
+        "timeZone": { "type": "string", "maxLength": 100 },
+        "reminderTime": { "type": "string", "maxLength": 50 },
+        "durationMinutes": { "type": "number" },
+        "completed": { "type": "boolean" },
+        "completedAt": { "type": "string", "maxLength": 50 },
+        "isMissed": { "type": "boolean" },
+        "isSkipped": { "type": "boolean" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "title", "completed", "priority"]
+    },
+    "Reminder": {
+      "title": "Reminder",
+      "description": "Cross-device push and in-app reminder scheduled jobs",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "title": { "type": "string", "maxLength": 200 },
+        "time": { "type": "string", "maxLength": 30 },
+        "date": { "type": "string", "maxLength": 30 },
+        "taskId": { "type": "string", "maxLength": 128 },
+        "planId": { "type": "string", "maxLength": 128 },
+        "scheduledTime": { "type": "string", "maxLength": 50 },
+        "timeZone": { "type": "string", "maxLength": 100 },
+        "notificationTitle": { "type": "string", "maxLength": 200 },
+        "notificationMessage": { "type": "string", "maxLength": 500 },
+        "status": { "type": "string", "enum": ["pending", "processing", "sent", "failed", "cancelled"] },
+        "advanceOffsetMinutes": { "type": "number" },
+        "attemptCount": { "type": "number" },
+        "lastAttemptAt": { "type": "string", "maxLength": 50 },
+        "deliveryResult": { "type": "string", "maxLength": 500 },
+        "recurring": { "type": "string", "enum": ["none", "daily", "weekly", "weekdays"] },
+        "completed": { "type": "boolean" },
+        "linkedTaskId": { "type": "string", "maxLength": 128 },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "title", "status"]
+    },
+    "DeviceRecord": {
+      "title": "DeviceRecord",
+      "description": "Registered browser device token for Web Push Notifications",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "fcmToken": { "type": "string", "maxLength": 500 },
+        "browser": { "type": "string", "maxLength": 50 },
+        "platform": { "type": "string", "maxLength": 50 },
+        "deviceName": { "type": "string", "maxLength": 100 },
+        "enabled": { "type": "boolean" },
+        "createdAt": { "type": "string" },
+        "lastActiveAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "fcmToken", "enabled"]
+    },
+    "UserPreferences": {
+      "title": "UserPreferences",
+      "description": "Settings and customizable preferences",
+      "type": "object",
+      "properties": {
+        "theme": { "type": "string", "enum": ["dark", "light", "system"] },
+        "notificationsEnabled": { "type": "boolean" },
+        "dailyDigest": { "type": "boolean" },
+        "streakWarnings": { "type": "boolean" },
+        "defaultReminderOffsetMinutes": { "type": "number" },
+        "timeZone": { "type": "string", "maxLength": 100 },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["theme"]
+    },
+    "ProgressRecord": {
+      "title": "ProgressRecord",
+      "description": "Daily study activity and completion log",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "date": { "type": "string", "maxLength": 20 },
+        "tasksCompleted": { "type": "number" },
+        "tasksTotal": { "type": "number" },
+        "studyMinutes": { "type": "number" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "date"]
+    },
+    "Memory": {
+      "title": "Memory",
+      "description": "User specific AI assistant memory notes, preferences and learning difficulties",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "category": { "type": "string", "enum": ["preference", "goal", "difficulty", "note", "achievement"] },
+        "text": { "type": "string", "maxLength": 1000 },
+        "topic": { "type": "string", "maxLength": 100 },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "category", "text"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "UserProfile" },
+      "description": "User profile document storing basic account and streak data"
+    },
+    "/users/{userId}/plans/{planId}": {
+      "schema": { "$ref": "Plan" },
+      "description": "Study and learning plans owned by the user"
+    },
+    "/users/{userId}/tasks/{taskId}": {
+      "schema": { "$ref": "Task" },
+      "description": "Tasks scheduled or tracked by the user"
+    },
+    "/users/{userId}/reminders/{reminderId}": {
+      "schema": { "$ref": "Reminder" },
+      "description": "Reminders configured by the user"
+    },
+    "/users/{userId}/devices/{deviceId}": {
+      "schema": { "$ref": "DeviceRecord" },
+      "description": "Registered devices and FCM tokens for multi-device push notifications"
+    },
+    "/users/{userId}/preferences/{docId}": {
+      "schema": { "$ref": "UserPreferences" },
+      "description": "App preferences and settings document"
+    },
+    "/users/{userId}/progress/{recordId}": {
+      "schema": { "$ref": "ProgressRecord" },
+      "description": "Daily progress and study tracking logs"
+    },
+    "/users/{userId}/memory/{memoryId}": {
+      "schema": { "$ref": "Memory" },
+      "description": "User-specific persistent AI memory items"
+    }
+  }
+}
